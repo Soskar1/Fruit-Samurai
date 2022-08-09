@@ -46,7 +46,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""TryAttack"",
                     ""type"": ""Button"",
                     ""id"": ""c0bde372-de7c-4b6f-bf2f-f824248b3cb0"",
                     ""expectedControlType"": ""Button"",
@@ -107,7 +107,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Attack"",
+                    ""action"": ""TryAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -137,7 +137,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("TryJump", throwIfNotFound: true);
-        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_Attack = m_Player.FindAction("TryAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
