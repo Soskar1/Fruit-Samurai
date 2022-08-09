@@ -16,11 +16,13 @@ namespace Core.Entities
         private void OnEnable()
         {
             _input.Controls.Player.Jump.performed += TryJump;
+            _input.Controls.Player.Attack.performed += Attack;
         }
 
         private void OnDisable()
         {
             _input.Controls.Player.Jump.performed -= TryJump;
+            _input.Controls.Player.Attack.performed -= Attack;
         }
 
         private void Update()
@@ -30,14 +32,16 @@ namespace Core.Entities
                 _flipping.Flip();
         }
 
-        private void FixedUpdate() => Move();
+        private void FixedUpdate() => Move(_input.MovementInput);
 
-        public override void Move() => _movable.Move(_input.MovementInput);
+        public override void Move(float direction) => _movable.Move(direction);
 
         private void TryJump(InputAction.CallbackContext ctx)
         {
             if (_groundCheck.CheckForGround())
                 _jumping.Jump();
         }
+
+        private void Attack(InputAction.CallbackContext ctx) => _combat.TryAttack();
     }
 }
