@@ -10,8 +10,8 @@ namespace Core.Entities.AI
 
         private bool _canChase = false;
 
-        private void OnEnable() => _combat.Attacked += ContinueChasing;
-        private void OnDisable() => _combat.Attacked -= ContinueChasing;
+        private void OnEnable() => _combat.Attacked += StartChasing;
+        private void OnDisable() => _combat.Attacked -= StartChasing;
 
         private void Update()
         {
@@ -35,9 +35,9 @@ namespace Core.Entities.AI
 
         public override void Move(float direction) => _movable.Move(direction);
 
-        private void Attack() => _combat.TryAttack();
+        private void Attack() => _combat.TryStartAttack();
 
-        private void ContinueChasing() => _canChase = true;
+        private void StartChasing() => _canChase = true;
 
         private void OnDrawGizmos()
         {
