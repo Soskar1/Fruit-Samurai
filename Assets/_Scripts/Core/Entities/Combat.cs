@@ -7,18 +7,47 @@ namespace Core.Entities
     {
         [SerializeField] private LayerMask _enemyLayer;
         [SerializeField] private int _damage = 1;
+        [SerializeField] private float _attackTime;
+        private float _timer;
 
         [SerializeField] private Transform _firstAttackAreaPoint;
         [SerializeField] private Transform _secondAttackAreaPoint;
 
         public Action Attacked;
 
-        public void TryAttack()
-        {
-            if (SearchForEnemyInArea(out IHittable enemy))
-                enemy.Hit(_damage);
+        private bool _isAttacking = false;
+        public bool IsAttacking => _isAttacking;
 
-            Attacked?.Invoke();
+        private void Awake() => _timer = _attackTime;
+
+        private void Update()
+        {
+            if (!_isAttacking)
+                return;
+
+            if (_timer <= 0)
+            {
+                Attacked?.Invoke();
+
+                _isAttacking = false;
+                _timer = _attackTime;
+            }
+            else
+            {
+                if (SearchForEnemyInArea(out IHittable enemy))
+                    enemy.Hit(_damage);
+
+                _timer -= Time.deltaTime;
+            }
+        }
+
+        public void TryStartAttack()
+        {
+            if (_isAttacking)
+                return;
+
+            _timer = _attackTime;
+            _isAttacking = true;
         }
 
         private bool SearchForEnemyInArea(out IHittable enemy)

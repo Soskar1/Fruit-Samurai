@@ -399,10 +399,10 @@ GameObject:
   - component: {fileID: 608908095}
   - component: {fileID: 608908089}
   - component: {fileID: 608908088}
+  - component: {fileID: 608908096}
   - component: {fileID: 608908090}
   - component: {fileID: 608908091}
   - component: {fileID: 608908093}
-  - component: {fileID: 608908096}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -530,6 +530,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _damage: 1
+  _attackTime: 0.3
   _firstAttackAreaPoint: {fileID: 1756533149}
   _secondAttackAreaPoint: {fileID: 1972850730}
 --- !u!114 &608908092
@@ -558,7 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb2d: {fileID: 608908085}
-  _force: 10
+  _force: 8
   _zeroGravityTime: 0.1
 --- !u!70 &608908094
 CapsuleCollider2D:
@@ -606,7 +607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb2d: {fileID: 608908085}
-  _amount: 0.2
+  _amount: 0.25
 --- !u!1 &660603679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1123,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _damage: 1
+  _attackTime: 0.1
   _firstAttackAreaPoint: {fileID: 722731395}
   _secondAttackAreaPoint: {fileID: 836475944}
 --- !u!114 &1770576547

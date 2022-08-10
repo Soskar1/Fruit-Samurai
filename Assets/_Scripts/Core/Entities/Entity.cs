@@ -1,4 +1,5 @@
 using UnityEngine;
+using Core.Entities.Movement;
 
 namespace Core.Entities
 {

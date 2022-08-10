@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Core.Entities
+namespace Core.Entities.Movement
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class ForceMovement : MonoBehaviour, IMovable

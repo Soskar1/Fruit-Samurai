@@ -1,3 +1,4 @@
+using Core.Entities.Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,15 +21,15 @@ namespace Core.Entities
         private void OnEnable()
         {
             _input.Controls.Player.Jump.performed += TryJump;
+            _input.Controls.Player.Attack.performed += TryDash;
             _input.Controls.Player.Attack.performed += Attack;
-            //_input.Controls.Player.Attack.performed += Dash;
         }
 
         private void OnDisable()
         {
             _input.Controls.Player.Jump.performed -= TryJump;
+            _input.Controls.Player.Attack.performed -= TryDash;
             _input.Controls.Player.Attack.performed -= Attack;
-            //_input.Controls.Player.Attack.performed -= Dash;
         }
 
         private void Update()
@@ -40,8 +41,8 @@ namespace Core.Entities
 
         private void FixedUpdate()
         {
-            //if (_input.MovementInput == 0)
-            //    return;
+            if (_combat.IsAttacking)
+                return;
 
             Move(_input.MovementInput);
 
@@ -57,10 +58,13 @@ namespace Core.Entities
                 _jumping.Jump();
         }
 
-        private void Attack(InputAction.CallbackContext ctx) => _combat.TryAttack();
+        private void Attack(InputAction.CallbackContext ctx) => _combat.TryStartAttack();
 
-        private void Dash(InputAction.CallbackContext ctx)
+        private void TryDash(InputAction.CallbackContext ctx)
         {
+            if (_combat.IsAttacking)
+                return;
+
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(_input.MousePosition);
             Vector2 direction = mousePosition - (Vector2)transform.position;
             _dashing.Dash(direction.normalized);
