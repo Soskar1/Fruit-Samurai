@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 608908083}
   - component: {fileID: 608908085}
   - component: {fileID: 608908094}
+  - component: {fileID: 608908097}
   - component: {fileID: 608908087}
   - component: {fileID: 608908092}
   - component: {fileID: 608908095}
@@ -608,6 +609,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb2d: {fileID: 608908085}
   _amount: 0.25
+--- !u!95 &608908097
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608908082}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6454a4975ea99ba4ba6c1171da884d99, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &660603679
 GameObject:
   m_ObjectHideFlags: 0
