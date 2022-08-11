@@ -16,10 +16,10 @@ namespace Core.Entities
         public void Dash(Vector2 direction)
         {
             _rb2d.velocity = direction * _force;
-            StartCoroutine(ChangeGravity());
+            StartCoroutine(TurnOffGravityForACertainTime());
         }
 
-        private IEnumerator ChangeGravity()
+        private IEnumerator TurnOffGravityForACertainTime()
         {
             _rb2d.gravityScale = 0;
 

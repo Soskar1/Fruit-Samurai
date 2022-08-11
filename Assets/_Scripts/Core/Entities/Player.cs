@@ -11,6 +11,7 @@ namespace Core.Entities
     [RequireComponent(typeof(Friction))]
     public class Player : Entity
     {
+        #region fields
         [Header("Input")]
         [SerializeField] private Input _input;
 
@@ -31,6 +32,7 @@ namespace Core.Entities
 
         private readonly int _speedParam = Animator.StringToHash("Speed");
         private readonly int _rollTrigger = Animator.StringToHash("Roll");
+        #endregion
 
         private void OnEnable()
         {
@@ -38,6 +40,8 @@ namespace Core.Entities
             _input.Controls.Player.Attack.performed += TryDash;
             _input.Controls.Player.Attack.performed += TryAttack;
             _input.Controls.Player.Roll.performed += TryRoll;
+
+            _rolling.OnRollEnded += TurnOffInvulnerability;
         }
 
         private void OnDisable()
@@ -46,6 +50,8 @@ namespace Core.Entities
             _input.Controls.Player.Attack.performed -= TryDash;
             _input.Controls.Player.Attack.performed -= TryAttack;
             _input.Controls.Player.Roll.performed -= TryRoll;
+
+            _rolling.OnRollEnded -= TurnOffInvulnerability;
         }
 
         private void Update()
@@ -104,13 +110,23 @@ namespace Core.Entities
 
         private void TryRoll(InputAction.CallbackContext ctx)
         {
+            if (_rolling.IsRolling)
+                return;
+
+            if (_rolling.Cooldown)
+                return;
+
             if (!_groundCheck.CheckForGround())
                 return;
 
             int direction = _flipping.FacingRight ? 1 : -1;
             _rolling.Roll(direction);
-            
+
+            _health.Invulnerable = true;
+
             _animator.SetTrigger(_rollTrigger);
         }
+
+        private void TurnOffInvulnerability() => _health.Invulnerable = false;
     }
 }

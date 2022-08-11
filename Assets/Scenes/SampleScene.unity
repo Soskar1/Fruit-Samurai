@@ -646,6 +646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb2d: {fileID: 608908085}
   _force: 15
+  _delay: 0.25
 --- !u!1 &660603679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1204,6 +1205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _flipping: {fileID: 1770576548}
+  _target: {fileID: 608908083}
+  _canChase: 1
 --- !u!1 &1972850729
 GameObject:
   m_ObjectHideFlags: 0

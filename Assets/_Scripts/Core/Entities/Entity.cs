@@ -7,7 +7,7 @@ namespace Core.Entities
     [RequireComponent(typeof(Health))]
     public abstract class Entity : MonoBehaviour, IHittable
     {
-        [SerializeField] private Health _health;
+        [SerializeField] protected Health _health;
         [SerializeField] protected Combat _combat;
         protected IMovable _movable;
 
@@ -15,6 +15,6 @@ namespace Core.Entities
 
         public abstract void Move(float direction);
 
-        public void Hit(int damage) => _health.TakeDamage(damage);
+        public void Hit(int damage) => _health.TryTakeDamage(damage);
     }
 }

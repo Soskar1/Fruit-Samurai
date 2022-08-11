@@ -8,12 +8,21 @@ namespace Core.Entities
         [SerializeField] private int _maxHealth = 1;
         private int _currentHealth;
 
+        private bool _invulnerable = false;
+        public bool Invulnerable { get => _invulnerable; set => _invulnerable = value; }
+
         public Action CurrentHealthChanged;
 
         private void OnEnable() => _currentHealth = _maxHealth;
 
-        public void TakeDamage(int damage)
+        public void TryTakeDamage(int damage)
         {
+            if (_invulnerable)
+            {
+                Debug.Log(gameObject.name + " is invulnerable!");
+                return;
+            }
+
             _currentHealth -= damage;
             CurrentHealthChanged?.Invoke();
 

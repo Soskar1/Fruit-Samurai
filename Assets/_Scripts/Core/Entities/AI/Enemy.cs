@@ -8,26 +8,24 @@ namespace Core.Entities.AI
         [SerializeField] private Chasing _chasing;
         [SerializeField] private float _attackDistance;
 
-        private bool _canChase = false;
-
-        private void OnEnable() => _combat.Attacked += StartChasing;
-        private void OnDisable() => _combat.Attacked -= StartChasing;
+        private void OnEnable() => _combat.Attacked += _chasing.StartChasing;
+        private void OnDisable() => _combat.Attacked -= _chasing.StartChasing;
 
         private void Update()
         {
-            if (!_canChase)
+            if (!_chasing.CanChase)
                 return;
 
             if (_chasing.GetDistanceToTarget() <= _attackDistance)
             {
                 Attack();
-                _canChase = false;
+                _chasing.StopChasing();
             }
         }
 
         private void FixedUpdate()
         {
-            if (!_canChase)
+            if (!_chasing.CanChase)
                 return;
 
             Move(_chasing.GetMovementDirection());
@@ -36,8 +34,6 @@ namespace Core.Entities.AI
         public override void Move(float direction) => _movable.Move(direction);
 
         private void Attack() => _combat.TryStartAttack();
-
-        private void StartChasing() => _canChase = true;
 
         private void OnDrawGizmos()
         {
