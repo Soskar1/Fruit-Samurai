@@ -394,6 +394,7 @@ GameObject:
   - component: {fileID: 608908083}
   - component: {fileID: 608908085}
   - component: {fileID: 608908094}
+  - component: {fileID: 608908097}
   - component: {fileID: 608908087}
   - component: {fileID: 608908092}
   - component: {fileID: 608908095}
@@ -403,6 +404,7 @@ GameObject:
   - component: {fileID: 608908090}
   - component: {fileID: 608908091}
   - component: {fileID: 608908093}
+  - component: {fileID: 608908098}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -466,9 +468,11 @@ MonoBehaviour:
   _input: {fileID: 1405136526}
   _jumping: {fileID: 608908089}
   _groundCheck: {fileID: 608908088}
-  _flipping: {fileID: 608908090}
-  _dashing: {fileID: 608908093}
   _friction: {fileID: 608908096}
+  _rolling: {fileID: 608908098}
+  _dashing: {fileID: 608908093}
+  _flipping: {fileID: 608908090}
+  _animator: {fileID: 608908097}
 --- !u!114 &608908088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,6 +612,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rb2d: {fileID: 608908085}
   _amount: 0.25
+--- !u!95 &608908097
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608908082}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6454a4975ea99ba4ba6c1171da884d99, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &608908098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608908082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ddcaa7f885ddf4386811c44158e83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rb2d: {fileID: 608908085}
+  _force: 15
+  _delay: 0.25
 --- !u!1 &660603679
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,6 +1205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _flipping: {fileID: 1770576548}
+  _target: {fileID: 608908083}
+  _canChase: 1
 --- !u!1 &1972850729
 GameObject:
   m_ObjectHideFlags: 0
