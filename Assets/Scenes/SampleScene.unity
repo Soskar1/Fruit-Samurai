@@ -562,6 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e4e7e4b42631e4ebb03b1e139633de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _groundCheck: {fileID: 608908088}
   _rb2d: {fileID: 608908085}
   _force: 8
   _zeroGravityTime: 0.1
@@ -1206,7 +1207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flipping: {fileID: 1770576548}
   _target: {fileID: 608908083}
-  _canChase: 1
+  _canChase: 0
 --- !u!1 &1972850729
 GameObject:
   m_ObjectHideFlags: 0
