@@ -32,6 +32,9 @@ namespace Core.Entities
 
         private readonly int _speedParam = Animator.StringToHash("Speed");
         private readonly int _rollTrigger = Animator.StringToHash("Roll");
+        private readonly int _attackTrigger = Animator.StringToHash("Attack");
+
+        private Transform _transform;
         #endregion
 
         private void OnEnable()
@@ -54,8 +57,13 @@ namespace Core.Entities
             _rolling.OnRollEnded -= TurnOffInvulnerability;
         }
 
+        private void Start() => _transform = transform;
+
         private void Update()
         {
+            if (_combat.IsAttacking)
+                return;
+
             if (_flipping.FacingRight && _input.MovementInput < 0 ||
                 !_flipping.FacingRight && _input.MovementInput > 0)
                 _flipping.Flip();
@@ -80,6 +88,9 @@ namespace Core.Entities
 
         private void TryJump(InputAction.CallbackContext ctx)
         {
+            if (_combat.IsAttacking)
+                return;
+
             if (_rolling.IsRolling)
                 return;
 
@@ -89,10 +100,23 @@ namespace Core.Entities
 
         private void TryAttack(InputAction.CallbackContext ctx)
         {
+            if (_combat.Cooldown)
+                return;
+
+            if (_combat.IsAttacking)
+                return;
+
             if (_rolling.IsRolling)
                 return;
 
-            _combat.TryStartAttack();
+            Vector2 mousePosition = _input.GetWorldMousePosition();
+
+            if (mousePosition.x > _transform.position.x && !_flipping.FacingRight ||
+                mousePosition.x < _transform.position.x && _flipping.FacingRight)
+                _flipping.Flip();
+
+            _combat.StartAttack();
+            _animator.SetTrigger(_attackTrigger);
         }
 
         private void TryDash(InputAction.CallbackContext ctx)
@@ -100,10 +124,13 @@ namespace Core.Entities
             if (_rolling.IsRolling)
                 return;
 
+            if (_combat.Cooldown)
+                return;
+
             if (_combat.IsAttacking)
                 return;
 
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(_input.MousePosition);
+            Vector2 mousePosition = _input.GetWorldMousePosition();
             Vector2 direction = mousePosition - (Vector2)transform.position;
             _dashing.Dash(direction.normalized);
         }
