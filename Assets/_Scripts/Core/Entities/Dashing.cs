@@ -37,7 +37,11 @@ namespace Core.Entities
 
         public void Dash(Vector2 direction)
         {
-            _rb2d.velocity = _dashed ? Vector2.zero : direction * _force;
+            if (_dashed)
+                if (_groundCheck.CheckForGround())
+                    _dashed = false;
+
+            _rb2d.velocity = _dashed ? new Vector2(_rb2d.velocity.x, 0) : direction * _force;
             StartCoroutine(TurnOffGravityForACertainTime());
 
             _dashed = true;

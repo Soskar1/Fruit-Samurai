@@ -18,10 +18,7 @@ namespace Core.Entities
         public void TryTakeDamage(int damage)
         {
             if (_invulnerable)
-            {
-                Debug.Log(gameObject.name + " is invulnerable!");
                 return;
-            }
 
             _currentHealth -= damage;
             CurrentHealthChanged?.Invoke();

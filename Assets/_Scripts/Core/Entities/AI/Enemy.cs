@@ -33,7 +33,7 @@ namespace Core.Entities.AI
 
         public override void Move(float direction) => _movable.Move(direction);
 
-        private void Attack() => _combat.TryStartAttack();
+        private void Attack() => _combat.StartAttack();
 
         private void OnDrawGizmos()
         {

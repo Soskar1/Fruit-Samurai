@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 49f6b36114ef88244bb59883e748cc28
+guid: afac7b2ec448d354aa7dd987843c2a3e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -104,7 +104,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Samurai_Idle_0
+      name: Samurai_Attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a441738d6ad69cf4f98fc18fda9bc393
-      internalID: -1083193310
+      spriteID: 3c3747cc1afadef4885ccf6091ab39c3
+      internalID: -849631785
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Samurai_Idle_1
+      name: Samurai_Attack_1
       rect:
         serializedVersion: 2
         x: 64
@@ -139,8 +139,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12c7bf5a5618a2247ab634fe97917762
-      internalID: 980362298
+      spriteID: 6ed0f2affc655764a9ba36fc8354d133
+      internalID: 1323417651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Samurai_Attack_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11f78e80df6340d4bb17633bcac84fb6
+      internalID: 665957107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Samurai_Attack_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac1f14b6c252127428b53bade91f8f9a
+      internalID: -728604518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Samurai_Attack_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71beb07d323aa664c85b1e6c8843b064
+      internalID: -2056324708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Samurai_Attack_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 441ece2bf36cbc84e88c0275fe2ea920
+      internalID: 1869751714
       vertices: []
       indices: 
       edges: []
@@ -156,8 +240,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Samurai_Idle_0: -1083193310
-      Samurai_Idle_1: 980362298
+      Samurai_Attack_5: 1869751714
+      Samurai_Attack_3: -728604518
+      Samurai_Attack_4: -2056324708
+      Samurai_Attack_1: 1323417651
+      Samurai_Attack_0: -849631785
+      Samurai_Attack_2: 665957107
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

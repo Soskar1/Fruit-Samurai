@@ -8,6 +8,7 @@ namespace Core.Entities
         [SerializeField] private LayerMask _enemyLayer;
         [SerializeField] private int _damage = 1;
         [SerializeField] private float _attackTime;
+        [SerializeField] private float _delay;
         private float _timer;
 
         [SerializeField] private Transform _firstAttackAreaPoint;
@@ -16,12 +17,31 @@ namespace Core.Entities
         public Action Attacked;
 
         private bool _isAttacking = false;
+        private bool _cooldown = false;
         public bool IsAttacking => _isAttacking;
+        public bool Cooldown => _cooldown;
 
         private void Awake() => _timer = _attackTime;
 
         private void Update()
         {
+            #region Cooldown
+            if (_cooldown)
+            {
+                if (_timer <= 0)
+                {
+                    _cooldown = false;
+                    _timer = _attackTime;
+                }
+                else
+                {
+                    _timer -= Time.deltaTime;
+                }
+            }
+
+            #endregion
+
+            #region Attack
             if (!_isAttacking)
                 return;
 
@@ -30,7 +50,8 @@ namespace Core.Entities
                 Attacked?.Invoke();
 
                 _isAttacking = false;
-                _timer = _attackTime;
+                _cooldown = true;
+                _timer = _delay;
             }
             else
             {
@@ -39,13 +60,11 @@ namespace Core.Entities
 
                 _timer -= Time.deltaTime;
             }
+            #endregion
         }
 
-        public void TryStartAttack()
+        public void StartAttack()
         {
-            if (_isAttacking)
-                return;
-
             _timer = _attackTime;
             _isAttacking = true;
         }

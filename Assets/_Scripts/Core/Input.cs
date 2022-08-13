@@ -10,7 +10,6 @@ namespace Core
 
         public Controls Controls => _controls;
         public float MovementInput => _movementInput;
-        public Vector2 MousePosition => _mousePosition;
 
         private void Awake() => _controls = new Controls();
         private void OnEnable() => _controls.Enable();
@@ -21,5 +20,7 @@ namespace Core
             _movementInput = _controls.Player.Movement.ReadValue<float>();
             _mousePosition = _controls.Player.MousePosition.ReadValue<Vector2>();
         }
+
+        public Vector2 GetWorldMousePosition() => Camera.main.ScreenToWorldPoint(_mousePosition);
     }
 }

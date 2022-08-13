@@ -149,8 +149,8 @@ Transform:
   m_GameObject: {fileID: 31680811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 608908083}
   m_RootOrder: 0
@@ -196,7 +196,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 077f5c6f07bd79c459417a273759ef11, type: 3}
+  m_Sprite: {fileID: -1083193310, guid: 49f6b36114ef88244bb59883e748cc28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -421,7 +421,7 @@ Transform:
   m_GameObject: {fileID: 608908082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.18, y: -3.343, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 31680812}
@@ -535,6 +535,7 @@ MonoBehaviour:
     m_Bits: 256
   _damage: 1
   _attackTime: 0.3
+  _delay: 0.5
   _firstAttackAreaPoint: {fileID: 1756533149}
   _secondAttackAreaPoint: {fileID: 1972850730}
 --- !u!114 &608908092
@@ -579,8 +580,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.048047703}
-  m_Size: {x: 0.24263483, y: 0.9039046}
+  m_Offset: {x: 0, y: -0.073451996}
+  m_Size: {x: 0.27850664, y: 1.3593245}
   m_Direction: 0
 --- !u!114 &608908095
 MonoBehaviour:
@@ -818,7 +819,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373706515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5004, z: 0}
+  m_LocalPosition: {x: 0, y: -0.7499, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1023,7 +1024,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756533148}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.426, y: 0.399, z: 0}
+  m_LocalPosition: {x: -0.846, y: 1.408, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1164,6 +1165,7 @@ MonoBehaviour:
     m_Bits: 128
   _damage: 1
   _attackTime: 0.1
+  _delay: 0.3
   _firstAttackAreaPoint: {fileID: 722731395}
   _secondAttackAreaPoint: {fileID: 836475944}
 --- !u!114 &1770576547
@@ -1207,7 +1209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _flipping: {fileID: 1770576548}
   _target: {fileID: 608908083}
-  _canChase: 0
+  _canChase: 1
 --- !u!1 &1972850729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,7 +1234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972850729}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.489, y: -0.502, z: 0}
+  m_LocalPosition: {x: 0.843, y: -0.749, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
