@@ -4,17 +4,21 @@ namespace Core.Entities.AI
 {
     public class Chasing : MonoBehaviour
     {
+        [SerializeField] private FieldOfView _fov;
         [SerializeField] private Flipping _flipping;
-        [SerializeField] private Transform _target;
+        private Transform _target;
         private Transform _transform;
 
-        [SerializeField] private bool _canChase = false;
+        private bool _canChase = false;
         public bool CanChase => _canChase;
 
         private const int _RIGHT_MOVEMENT_DIRECTION = 1;
         private const int _LEFT_MOVEMENT_DIRECTION = -1;
 
         private void Awake() => _transform = transform;
+
+        private void OnEnable() => _fov.TargetFound += SetTarget;
+        private void OnDisable() => _fov.TargetFound -= SetTarget;
 
         private void Update()
         {
@@ -26,7 +30,11 @@ namespace Core.Entities.AI
                 _flipping.Flip();
         }
 
-        public void SetTarget(Transform newTarget) => _target = newTarget;
+        private void SetTarget(Transform newTarget)
+        {
+            _target = newTarget;
+            _canChase = true;
+        }
 
         public void StartChasing() => _canChase = true;
         public void StopChasing() => _canChase = false;
