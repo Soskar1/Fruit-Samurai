@@ -40,6 +40,7 @@ namespace Core.Entities.AI
             Gizmos.color = Color.green;
 
             Gizmos.DrawLine(transform.position, new Vector2(transform.position.x - _attackDistance, transform.position.y));
+            Gizmos.DrawLine(transform.position, new Vector2(transform.position.x + _attackDistance, transform.position.y));
         }
     }
 }
