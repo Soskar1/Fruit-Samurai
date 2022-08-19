@@ -7,6 +7,7 @@ namespace Core.Entities
     [RequireComponent(typeof(Jumping))]
     [RequireComponent(typeof(GroundCheck))]
     [RequireComponent(typeof(Flipping))]
+    [RequireComponent(typeof(Combat))]
     [RequireComponent(typeof(Dashing))]
     [RequireComponent(typeof(Friction))]
     public class Player : Entity
@@ -21,6 +22,7 @@ namespace Core.Entities
         [SerializeField] private Friction _friction;
 
         [Header("Abilities")]
+        [SerializeField] private Combat _combat;
         [SerializeField] private Rolling _rolling;
         [SerializeField] private Dashing _dashing;
 
@@ -84,7 +86,7 @@ namespace Core.Entities
                 _friction.Apply();
         }
 
-        public override void Move(float direction) => _movable.Move(direction);
+        private void Move(float direction) => _movable.Move(direction);
 
         private void TryJump(InputAction.CallbackContext ctx)
         {
