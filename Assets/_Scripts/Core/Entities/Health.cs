@@ -15,12 +15,12 @@ namespace Core.Entities
 
         private void OnEnable() => _currentHealth = _maxHealth;
 
-        public void TryTakeDamage(int damage)
+        public void TryTakeDamage()
         {
             if (_invulnerable)
                 return;
 
-            _currentHealth -= damage;
+            _currentHealth--;
             CurrentHealthChanged?.Invoke();
 
             if (_currentHealth <= 0)
