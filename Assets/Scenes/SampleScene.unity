@@ -630,7 +630,6 @@ MonoBehaviour:
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  _damage: 1
   _attackTime: 0.3
   _delay: 0.2
   _firstAttackAreaPoint: {fileID: 1756533149}
@@ -1369,12 +1368,10 @@ GameObject:
   - component: {fileID: 1770576541}
   - component: {fileID: 1770576545}
   - component: {fileID: 1770576544}
-  - component: {fileID: 1770576543}
   - component: {fileID: 1770576542}
   - component: {fileID: 1770576546}
   - component: {fileID: 1770576547}
   - component: {fileID: 1770576548}
-  - component: {fileID: 1770576549}
   - component: {fileID: 1770576550}
   m_Layer: 8
   m_Name: Enemy
@@ -1413,22 +1410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 1
---- !u!114 &1770576543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770576540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5175bdf7bfb32894f9ea969d321a2339, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: {fileID: 1770576542}
-  _combat: {fileID: 1770576546}
-  _chasing: {fileID: 1770576549}
-  _attackDistance: 1
 --- !u!61 &1770576544
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1491,7 +1472,6 @@ MonoBehaviour:
   _enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  _damage: 1
   _attackTime: 0.3
   _delay: 0.3
   _firstAttackAreaPoint: {fileID: 722731395}
@@ -1523,20 +1503,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _facingRight: 1
---- !u!114 &1770576549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770576540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec8fb3c8be13e447aee4a999973277b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fov: {fileID: 1770576550}
-  _flipping: {fileID: 1770576548}
 --- !u!114 &1770576550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1572,7 +1538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1817835118
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1809,6 +1775,13 @@ MonoBehaviour:
   _leftWaypoint: {fileID: 2118980042}
   _rightWaypoint: {fileID: 971344199}
   _fov: {fileID: 2025240040}
+  _attackDistance: 0.8
+  _attackTime: 0.7
+  _firstAreaPoint: {fileID: 540869638}
+  _secondAreaPoint: {fileID: 842421585}
+  _enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &2025240040
 MonoBehaviour:
   m_ObjectHideFlags: 0

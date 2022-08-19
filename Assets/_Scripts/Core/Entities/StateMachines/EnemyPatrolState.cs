@@ -30,7 +30,6 @@ namespace Core.Entities.StateMachines
             _movementDirection = _flipping.FacingRight ? 1 : -1;
 
             _targetWaypoint = _flipping.FacingRight ? _rightWaypoint : _leftWaypoint;
-            Debug.Log("Patrol");
         }
 
         public override void UpdateState()
@@ -51,14 +50,10 @@ namespace Core.Entities.StateMachines
             }
         }
 
-        public override void FixedUpdateState()
-        {
-            _movable.Move(_movementDirection);
-        }
+        public override void FixedUpdateState() => _movable.Move(_movementDirection);
 
         public override void ExitState()
         {
-
         }
     }
 }

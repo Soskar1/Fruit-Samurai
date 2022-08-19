@@ -6,7 +6,6 @@ namespace Core.Entities
     public class Combat : MonoBehaviour
     {
         [SerializeField] private LayerMask _enemyLayer;
-        [SerializeField] private int _damage = 1;
         [SerializeField] private float _attackTime;
         [SerializeField] private float _delay;
         private float _timer;
@@ -56,7 +55,7 @@ namespace Core.Entities
             else
             {
                 if (SearchForEnemyInArea(out IHittable enemy))
-                    enemy.Hit(_damage);
+                    enemy.Hit();
 
                 _timer -= Time.deltaTime;
             }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-namespace Core.Entities.AI
+namespace Core.Entities
 {
     public class FieldOfView : MonoBehaviour
     {

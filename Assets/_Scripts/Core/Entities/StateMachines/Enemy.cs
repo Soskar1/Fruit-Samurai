@@ -1,4 +1,3 @@
-using Core.Entities.AI;
 using Core.Entities.Movement;
 using UnityEngine;
 
@@ -24,6 +23,15 @@ namespace Core.Entities.StateMachines
         [Header("FOV")]
         [SerializeField] private FieldOfView _fov;
 
+        [Header("Chase State")]
+        [SerializeField] private float _attackDistance;
+
+        [Header("Attack State")]
+        [SerializeField] private float _attackTime;
+        [SerializeField] private Transform _firstAreaPoint;
+        [SerializeField] private Transform _secondAreaPoint;
+        [SerializeField] private LayerMask _enemyLayer;
+
         public EnemyIdleState IdleState => _idleState;
         public EnemyPatrolState PatrolState => _patrolState;
         public EnemyChaseState ChaseState => _chaseState;
@@ -45,7 +53,7 @@ namespace Core.Entities.StateMachines
         {
             _idleState = new EnemyIdleState(this, _idleTime);
             _patrolState = new EnemyPatrolState(this, _flipping, _movable, _leftWaypoint.position, _rightWaypoint.position);
-            _attackState = new EnemyAttackState(this);
+            _attackState = new EnemyAttackState(this, _attackTime, _firstAreaPoint, _secondAreaPoint, _enemyLayer);
         }
 
         private void Update() => _currentState.UpdateState();
@@ -63,8 +71,22 @@ namespace Core.Entities.StateMachines
             _fov.enabled = false;
             _fov.TargetFound -= ActivateChasing;
 
-            _chaseState = new EnemyChaseState(this, target);
+            _chaseState = new EnemyChaseState(this, _flipping, _movable, target, _attackDistance);
             SetState(_chaseState);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, new Vector2(transform.position.x + _attackDistance, transform.position.y));
+            Gizmos.DrawLine(transform.position, new Vector2(transform.position.x - _attackDistance, transform.position.y));
+
+            Gizmos.color = Color.cyan;
+
+            Gizmos.DrawLine(_firstAreaPoint.position, new Vector2(_secondAreaPoint.position.x, _firstAreaPoint.position.y));
+            Gizmos.DrawLine(new Vector2(_secondAreaPoint.position.x, _firstAreaPoint.position.y), _secondAreaPoint.position);
+            Gizmos.DrawLine(_secondAreaPoint.position, new Vector2(_firstAreaPoint.position.x, _secondAreaPoint.position.y));
+            Gizmos.DrawLine(new Vector2(_firstAreaPoint.position.x, _secondAreaPoint.position.y), _firstAreaPoint.position);
         }
     }
 }

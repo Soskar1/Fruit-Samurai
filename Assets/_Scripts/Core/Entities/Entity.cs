@@ -15,6 +15,6 @@ namespace Core.Entities
 
         public abstract void Move(float direction);
 
-        public void Hit(int damage) => _health.TryTakeDamage(damage);
+        public void Hit() => _health.TryTakeDamage();
     }
 }

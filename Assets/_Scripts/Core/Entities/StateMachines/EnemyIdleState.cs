@@ -7,16 +7,9 @@ namespace Core.Entities.StateMachines
         private float _idleTime;
         private float _timer;
 
-        public EnemyIdleState(Enemy enemy, float idleTime) : base(enemy)
-        {
-            _idleTime = idleTime;
-        }
+        public EnemyIdleState(Enemy enemy, float idleTime) : base(enemy) => _idleTime = idleTime;
 
-        public override void EnterState()
-        {
-            Debug.Log("Idle");
-            _timer = _idleTime;
-        }
+        public override void EnterState() => _timer = _idleTime;
 
         public override void UpdateState()
         {
