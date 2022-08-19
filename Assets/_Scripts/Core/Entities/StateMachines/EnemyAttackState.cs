@@ -10,12 +10,18 @@ namespace Core.Entities.StateMachines
 
         public override void EnterState()
         {
-            throw new System.NotImplementedException();
         }
 
         public override void UpdateState()
         {
-            throw new System.NotImplementedException();
+        }
+
+        public override void FixedUpdateState()
+        {
+        }
+
+        public override void ExitState()
+        {
         }
     }
 }

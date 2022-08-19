@@ -8,24 +8,24 @@ namespace Core.Entities.AI
         [SerializeField] private float _radius;
         [SerializeField] private LayerMask _targetLayer;
         [SerializeField] private LayerMask _obstacleLayer;
-        private Vector2 _center;
+        private Transform _center;
         private Transform _target;
 
         public Action<Transform> TargetFound;
 
-        private void Awake() => _center = transform.position;
+        private void Awake() => _center = transform;
 
         private void LateUpdate()
         {
             if (_target != null)
                 return;
 
-            Collider2D overlapInfo = Physics2D.OverlapCircle(_center, _radius, _targetLayer);
+            Collider2D overlapInfo = Physics2D.OverlapCircle(_center.position, _radius, _targetLayer);
             if (overlapInfo == null)
                 return;
 
-            Vector2 direction = (Vector2)overlapInfo.transform.position - _center;
-            RaycastHit2D hitInfo = Physics2D.Raycast(_center, direction, _radius, _obstacleLayer);
+            Vector2 direction = (Vector2)(overlapInfo.transform.position - _center.position).normalized;
+            RaycastHit2D hitInfo = Physics2D.Raycast(_center.position, direction, _radius, _obstacleLayer);
 
             if (hitInfo.collider != null)
                 return;

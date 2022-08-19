@@ -5,36 +5,60 @@ namespace Core.Entities.StateMachines
 {
     public class EnemyPatrolState : EnemyBaseState
     {
-        private float _timer;
-        private float _patrolTime;
+        private Flipping _flipping;
         private IMovable _movable;
-        private Patrol _patrol;
+        private float _movementDirection;
 
-        public EnemyPatrolState(Enemy enemy, float patrolTime, IMovable movable, Patrol patrol) : base(enemy)
+        private Vector2 _leftWaypoint;
+        private Vector2 _rightWaypoint;
+        private Vector2 _targetWaypoint;
+        private Transform _transform;
+
+        public EnemyPatrolState(Enemy enemy, Flipping flipping, IMovable movable, Vector2 leftWaypoint, Vector2 rightWaypoint) : base(enemy)
         {
-            _patrolTime = patrolTime;
+            _flipping = flipping;
             _movable = movable;
-            _patrol = patrol;
+
+            _leftWaypoint = leftWaypoint;
+            _rightWaypoint = rightWaypoint;
+            _transform = enemy.transform;
         }
 
         public override void EnterState()
         {
-            Debug.Log("Патрулирую");
-            _timer = _patrolTime;
+            _flipping.Flip();
+            _movementDirection = _flipping.FacingRight ? 1 : -1;
+
+            _targetWaypoint = _flipping.FacingRight ? _rightWaypoint : _leftWaypoint;
+            Debug.Log("Patrol");
         }
 
         public override void UpdateState()
         {
-            if (_timer <= 0)
+            if (_targetWaypoint == _rightWaypoint)
             {
-                _enemy.SetState(_enemy.IdleState);
-                _timer = _patrolTime;
+                if (_transform.position.x >= _targetWaypoint.x)
+                {
+                    _enemy.SetState(_enemy.IdleState);
+                }
             }
             else
             {
-                _movable.Move(_patrol.GetMovementDirection());
-                _timer -= Time.deltaTime;
+                if (_transform.position.x <= _targetWaypoint.x)
+                {
+                    _enemy.SetState(_enemy.IdleState);
+                }
             }
+        }
+
+        public override void FixedUpdateState()
+        {
+            _movable.Move(_movementDirection);
+        }
+
+        public override void ExitState()
+        {
+
         }
     }
 }

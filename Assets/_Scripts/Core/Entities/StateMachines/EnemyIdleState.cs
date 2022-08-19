@@ -14,7 +14,7 @@ namespace Core.Entities.StateMachines
 
         public override void EnterState()
         {
-            Debug.Log("Стою на месте");
+            Debug.Log("Idle");
             _timer = _idleTime;
         }
 
@@ -29,6 +29,16 @@ namespace Core.Entities.StateMachines
             {
                 _timer -= Time.deltaTime;
             }
+        }
+
+        public override void FixedUpdateState()
+        {
+
+        }
+
+        public override void ExitState()
+        {
+
         }
     }
 }

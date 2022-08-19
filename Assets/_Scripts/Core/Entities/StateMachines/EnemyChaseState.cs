@@ -4,18 +4,31 @@ namespace Core.Entities.StateMachines
 {
     public class EnemyChaseState : EnemyBaseState
     {
-        public EnemyChaseState(Enemy enemy) : base(enemy)
+        private Transform _target;
+
+        public EnemyChaseState(Enemy enemy, Transform target) : base(enemy)
         {
+            _target = target;
         }
 
         public override void EnterState()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Chasing");
         }
 
         public override void UpdateState()
         {
-            throw new System.NotImplementedException();
+            
+        }
+
+        public override void FixedUpdateState()
+        {
+            
+        }
+
+        public override void ExitState()
+        {
+            
         }
     }
 }

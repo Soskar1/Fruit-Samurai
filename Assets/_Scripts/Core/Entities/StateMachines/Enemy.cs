@@ -1,3 +1,4 @@
+using Core.Entities.AI;
 using Core.Entities.Movement;
 using UnityEngine;
 
@@ -15,9 +16,13 @@ namespace Core.Entities.StateMachines
         [SerializeField] private float _idleTime;
 
         [Header("Patrol State")]
-        [SerializeField] private Patrol _patrol;
-        [SerializeField] private float _patrolTime;
+        [SerializeField] private Flipping _flipping;
+        [SerializeField] private Transform _leftWaypoint;
+        [SerializeField] private Transform _rightWaypoint;
         private IMovable _movable;
+
+        [Header("FOV")]
+        [SerializeField] private FieldOfView _fov;
 
         public EnemyIdleState IdleState => _idleState;
         public EnemyPatrolState PatrolState => _patrolState;
@@ -28,24 +33,38 @@ namespace Core.Entities.StateMachines
         {
             _movable = GetComponent<IMovable>();
             InitializeStates();
+
+            _currentState = _idleState;
+            _currentState.EnterState();
         }
 
-        private void Start() => SetState(_idleState);
+        private void OnEnable() => _fov.TargetFound += ActivateChasing;
+        private void OnDisable() => _fov.TargetFound -= ActivateChasing;
 
         private void InitializeStates()
         {
             _idleState = new EnemyIdleState(this, _idleTime);
-            _patrolState = new EnemyPatrolState(this, _patrolTime, _movable, _patrol);
-            _chaseState = new EnemyChaseState(this);
+            _patrolState = new EnemyPatrolState(this, _flipping, _movable, _leftWaypoint.position, _rightWaypoint.position);
             _attackState = new EnemyAttackState(this);
         }
 
         private void Update() => _currentState.UpdateState();
+        private void FixedUpdate() => _currentState.FixedUpdateState();
 
         public void SetState(EnemyBaseState state)
         {
+            _currentState.ExitState();
             _currentState = state;
             state.EnterState();
+        }
+
+        private void ActivateChasing(Transform target)
+        {
+            _fov.enabled = false;
+            _fov.TargetFound -= ActivateChasing;
+
+            _chaseState = new EnemyChaseState(this, target);
+            SetState(_chaseState);
         }
     }
 }
