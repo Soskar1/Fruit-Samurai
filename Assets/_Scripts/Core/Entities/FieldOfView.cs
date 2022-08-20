@@ -13,25 +13,29 @@ namespace Core.Entities
 
         public Action<Transform> TargetFound;
 
+        public Transform Target => _target;
+
         private void Awake() => _center = transform;
 
-        private void LateUpdate()
+        public bool TryFindTarget()
         {
             if (_target != null)
-                return;
+                return true;
 
             Collider2D overlapInfo = Physics2D.OverlapCircle(_center.position, _radius, _targetLayer);
             if (overlapInfo == null)
-                return;
+                return false;
 
             Vector2 direction = (Vector2)(overlapInfo.transform.position - _center.position).normalized;
             RaycastHit2D hitInfo = Physics2D.Raycast(_center.position, direction, _radius, _obstacleLayer);
 
             if (hitInfo.collider != null)
-                return;
+                return false;
 
             _target = overlapInfo.transform;
             TargetFound?.Invoke(_target);
+
+            return true;
         }
 
         private void OnDrawGizmos()
