@@ -6,7 +6,6 @@ namespace Core.Entities
 {
     [RequireComponent(typeof(Jumping))]
     [RequireComponent(typeof(GroundCheck))]
-    [RequireComponent(typeof(Flipping))]
     [RequireComponent(typeof(Combat))]
     [RequireComponent(typeof(Dashing))]
     [RequireComponent(typeof(Friction))]
@@ -26,17 +25,12 @@ namespace Core.Entities
         [SerializeField] private Rolling _rolling;
         [SerializeField] private Dashing _dashing;
 
-        [Header("Visual")]
-        [SerializeField] private Flipping _flipping;
-
         [Header("Animation")]
         [SerializeField] private Animator _animator;
 
         private readonly int _speedParam = Animator.StringToHash("Speed");
         private readonly int _rollTrigger = Animator.StringToHash("Roll");
         private readonly int _attackTrigger = Animator.StringToHash("Attack");
-
-        private Transform _transform;
         #endregion
 
         private void OnEnable()
@@ -86,7 +80,7 @@ namespace Core.Entities
                 _friction.Apply();
         }
 
-        private void Move(float direction) => _movable.Move(direction);
+        public override void Move(float direction) => _movable.Move(direction);
 
         private void TryJump(InputAction.CallbackContext ctx)
         {
@@ -112,10 +106,7 @@ namespace Core.Entities
                 return;
 
             Vector2 mousePosition = _input.GetWorldMousePosition();
-
-            if (mousePosition.x > _transform.position.x && !_flipping.FacingRight ||
-                mousePosition.x < _transform.position.x && _flipping.FacingRight)
-                _flipping.Flip();
+            _flipping.FaceTheTarget(mousePosition);
 
             _combat.StartAttack();
             _animator.SetTrigger(_attackTrigger);
